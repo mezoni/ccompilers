@@ -1,24 +1,3 @@
-#CCompilers
-==========
-
-A set of classes for easy access to the system С/С++ compilers out the Dart language scripts.
-
-This tools is a library written in Dart programming language.
-It is intended to compile C/C++ source files from Dart scripts.
-
-To test how it works run **example/example_build.dart**.
-
-It compile the project that is a Dart native C/C++ extension project.
-
-After compile run **example/example_use_sample_extension.dart**.
-This is a script that import **sample_extension.dart** that have a native function calls to Dart VM.
-And **sample_extension.dart** uses compiled by **ccompilets** binary libraries to work.
-
-If it works then your project will be succesful compiled.
-
-Also some basic example for clarification.
-
-```
 library ccompilers.bin.example_build;
 
 import 'dart:io';
@@ -204,4 +183,3 @@ class Project {
     throw new StateError('Unsupported operating system $_operatingSystem');
   }
 }
-```
