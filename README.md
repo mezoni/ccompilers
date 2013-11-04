@@ -18,7 +18,7 @@ If it works then your project will be succesful compiled.
 
 Also some basic example for clarification.
 
-```
+```dart
 library ccompilers.bin.example_build;
 
 import 'dart:io';
