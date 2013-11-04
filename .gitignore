@@ -3,6 +3,8 @@ packages
 .project
 pubspec.lock
 *.dll
+*.exp
+*.lib
 *.o
 *.obj
 *.so
