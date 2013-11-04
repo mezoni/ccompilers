@@ -160,7 +160,6 @@ class Project {
 
   void _setupTools() {
     switch(_operatingSystem) {
-      case 'android':
       case 'macos':
       case 'linux':
         _compiler = new Gpp();
