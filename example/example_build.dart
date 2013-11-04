@@ -22,6 +22,7 @@ class Project {
   List _linkerInput = ['sample_extension'];
   List _linkerLibpath = [];
   String _linkerOutput = 'sample_extension';
+  List _unusedFileExtensions = ['exp', 'lib', 'o', 'obj'];
 
   int _build() {
     var tasks = new List<CommandLineTask>();
@@ -42,6 +43,7 @@ class Project {
       }
     }
 
+    _clean(Directory.current.path, _unusedFileExtensions);
     return 0;
   }
 
@@ -150,6 +152,31 @@ class Project {
         break;
       default:
         _errorUnsupportedOperatingSystem();
+    }
+  }
+
+  void _clean(String path, List<String> extensions) {
+    var directory = new Directory(path);
+    if(!directory.existsSync()) {
+      return;
+    }
+
+    var list = directory.listSync(recursive: false);
+    for(var file in list) {
+      if(file is! FileSystemEntity) {
+        continue;
+      }
+
+      for(var extension in extensions) {
+        if(extension == null || extension.isEmpty) {
+          continue;
+        }
+
+        if(file.path.endsWith('.$extension')) {
+          file.deleteSync(recursive: false);
+          break;
+        }
+      }
     }
   }
 

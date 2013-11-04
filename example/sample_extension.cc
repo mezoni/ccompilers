@@ -102,4 +102,3 @@ Dart_NativeFunction ResolveName(Dart_Handle name, int argc) {
   Dart_ExitScope();
   return result;
 }
-

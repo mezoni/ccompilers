@@ -12,7 +12,7 @@ It compile the project that is a Dart native C/C++ extension project.
 
 After compile run **example/example_use_sample_extension.dart**.
 This is a script that import **sample_extension.dart** that have a native function calls to Dart VM.
-And **sample_extension.dart** uses compiled by **ccompilets** binary libraries to work.
+And **sample_extension.dart** uses compiled by **ccompilers** binary libraries to work.
 
 If it works then your project will be succesful compiled.
 
