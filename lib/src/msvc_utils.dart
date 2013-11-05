@@ -48,7 +48,7 @@ class MsvcUtils {
        var file = new File('${vc7Path}bin\\$scriptName');
 
        if(file.existsSync()) {
-         fullScriptPath = file.fullPathSync();
+         fullScriptPath = file.path;
          break;
        }
      }

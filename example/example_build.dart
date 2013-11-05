@@ -195,16 +195,6 @@ class Project {
     return result;
   }
 
-  List<String> _quote(List<String> list, {String quote: '"'}) {
-    var length = list.length;
-    var result = new List<String>(length);
-    for(var i = 0; i < length; i++) {
-      result[i] = '$quote${list[i]}$quote';
-    }
-
-    return result;
-  }
-
   void _errorUnsupportedOperatingSystem() {
     throw new StateError('Unsupported operating system $_operatingSystem');
   }

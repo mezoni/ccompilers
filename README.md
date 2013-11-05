@@ -43,6 +43,7 @@ class Project {
   List _linkerInput = ['sample_extension'];
   List _linkerLibpath = [];
   String _linkerOutput = 'sample_extension';
+  List _unusedFileExtensions = ['exp', 'lib', 'o', 'obj'];
 
   int _build() {
     var tasks = new List<CommandLineTask>();
@@ -63,6 +64,7 @@ class Project {
       }
     }
 
+    _clean(Directory.current.path, _unusedFileExtensions);
     return 0;
   }
 
@@ -174,6 +176,31 @@ class Project {
     }
   }
 
+  void _clean(String path, List<String> extensions) {
+    var directory = new Directory(path);
+    if(!directory.existsSync()) {
+      return;
+    }
+
+    var list = directory.listSync(recursive: false);
+    for(var file in list) {
+      if(file is! FileSystemEntity) {
+        continue;
+      }
+
+      for(var extension in extensions) {
+        if(extension == null || extension.isEmpty) {
+          continue;
+        }
+
+        if(file.path.endsWith('.$extension')) {
+          file.deleteSync(recursive: false);
+          break;
+        }
+      }
+    }
+  }
+
   List<String> _addExtension(List<String> files, String extension) {
     var length = files.length;
     var result = new List<String>(length);
@@ -184,16 +211,6 @@ class Project {
       } else {
         result[i] = file;
       }
-    }
-
-    return result;
-  }
-
-  List<String> _quote(List<String> list, {String quote: '"'}) {
-    var length = list.length;
-    var result = new List<String>(length);
-    for(var i = 0; i < length; i++) {
-      result[i] = '$quote${list[i]}$quote';
     }
 
     return result;

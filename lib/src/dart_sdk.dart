@@ -86,7 +86,7 @@ class DartSDK {
 
     var fp = file.openSync(mode: FileMode.READ);
     var buffer = [0, 0, 0, 0];
-    if(FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
+    if(_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
       return eiClass;
     }
 
@@ -95,7 +95,7 @@ class DartSDK {
     }
 
     buffer = [0];
-    if(FileUtils.readAsListSync(fp, buffer, 4) != buffer.length) {
+    if(_FileUtils.readAsListSync(fp, buffer, 4) != buffer.length) {
       return eiClass;
     }
 
@@ -115,7 +115,7 @@ class DartSDK {
 
     var fp = file.openSync(mode: FileMode.READ);
     var buffer = [0, 0, 0, 0];
-    if(FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
+    if(_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
       return mhMagic;
     }
 
@@ -135,7 +135,7 @@ class DartSDK {
     var fp = file.openSync(mode: FileMode.READ);
     var func  = (result) {
       var buffer = [0, 0];
-      if(FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
+      if(_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
         return result;
       }
 
@@ -144,12 +144,12 @@ class DartSDK {
       }
 
       buffer = [0, 0, 0, 0];
-      if(FileUtils.readAsListSync(fp, buffer, 0x3C) != buffer.length) {
+      if(_FileUtils.readAsListSync(fp, buffer, 0x3C) != buffer.length) {
         return result;
       }
 
       int offset = _listToLong(buffer);
-      if(FileUtils.readAsListSync(fp, buffer, offset) != buffer.length) {
+      if(_FileUtils.readAsListSync(fp, buffer, offset) != buffer.length) {
         return result;
       }
 
@@ -157,7 +157,7 @@ class DartSDK {
         return result;
       }
 
-      if(FileUtils.readAsListSync(fp, buffer, offset + 4) != buffer.length) {
+      if(_FileUtils.readAsListSync(fp, buffer, offset + 4) != buffer.length) {
         return result;
       }
 

@@ -1,6 +1,6 @@
 part of ccompilers.ccompilers;
 
-class FileUtils {
+class _FileUtils {
   static String correctPathSeparators(String path) {
     var to = Platform.pathSeparator;
     var from = to == '\\' ? '/' : '\\';
@@ -19,14 +19,5 @@ class FileUtils {
     }
 
     return fp.readIntoSync(buffer, 0, buffer.length);
-  }
-
-  static String readAsStringSync(String filename) {
-    var file = new File(filename);
-    if(!file.existsSync()) {
-      throw('File "$filename" not found.');
-    }
-
-    return file.readAsStringSync();
   }
 }
