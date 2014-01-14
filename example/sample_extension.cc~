@@ -13,7 +13,7 @@
 
 #include "dart_api.h"
 
-Dart_NativeFunction ResolveName(Dart_Handle name, int argc, bool* auto_setup_scope);
+Dart_NativeFunction ResolveName(Dart_Handle name, int argc);
 
 DART_EXPORT Dart_Handle sample_extension_Init(Dart_Handle parent_library) {
   if (Dart_IsError(parent_library)) { return parent_library; }
@@ -86,7 +86,7 @@ FunctionLookup function_list[] = {
   {"IsLittleEndian", IsLittleEndian},
   {NULL, NULL}};
 
-Dart_NativeFunction ResolveName(Dart_Handle name, int argc, bool* auto_setup_scope) {
+Dart_NativeFunction ResolveName(Dart_Handle name, int argc) {
   if (!Dart_IsString(name)) return NULL;
   Dart_NativeFunction result = NULL;
   Dart_EnterScope();

@@ -127,7 +127,7 @@ class Project {
     args.addAll(['dart.lib', 'sample_extension_dllmain_win']);
     args.addAll(_linkerLibpath, prefix: '/LIBPATH:');
     args.add('$DART_SDK/bin', prefix: '/LIBPATH:');
-    args.add('sample_extension.dll', prefix: '/OUT:');
+    args.add(_linkerOutput, prefix: '/OUT:', suffix: '.dll');
   }
 
   int run() {
