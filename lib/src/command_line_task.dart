@@ -15,7 +15,8 @@ class CommandLineTask {
 
   String success;
 
-  CommandLineTask(ProcessResult action(), {this.after, this.before, this.fail, this.silent, this.success}) {
+  CommandLineTask(ProcessResult
+      action(), {this.after, this.before, this.fail, this.silent, this.success}) {
     _action = action;
   }
 
@@ -23,7 +24,7 @@ class CommandLineTask {
     _write(before);
     result = _action();
     _write(after);
-    if(result.exitCode == 0) {
+    if (result.exitCode == 0) {
       _write(success);
     } else {
       _write(fail);
@@ -33,15 +34,15 @@ class CommandLineTask {
   }
 
   void _write(String message, {bool error}) {
-    if(silent == true) {
+    if (silent == true) {
       return;
     }
 
-    if(message == null || message.isEmpty) {
+    if (message == null || message.isEmpty) {
       return;
     }
 
-    if(error == true) {
+    if (error == true) {
       stderr.writeln(message);
     } else {
       print(message);

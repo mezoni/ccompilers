@@ -4,11 +4,11 @@ abstract class MsvsTool extends CommandLineTool {
   int _bits;
 
   MsvsTool({int bits}) {
-    if(!(bits == null || bits == 32 || bits == 64)) {
+    if (!(bits == null || bits == 32 || bits == 64)) {
       throw new ArgumentError('bits: $bits');
     }
 
-    if(bits == null) {
+    if (bits == null) {
       bits = WindowsUtils.getSystemBits();
     }
 
@@ -19,7 +19,7 @@ abstract class MsvsTool extends CommandLineTool {
     environment = super.setEnvironment(environment);
     environment.addAll(MsvcUtils.getEnvironment(_bits));
     var file = WindowsUtils.findFileInEnvPath(environment, executable);
-    if(file != null) {
+    if (file != null) {
       path = pathos.dirname(file);
     }
 

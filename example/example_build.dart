@@ -26,7 +26,8 @@ class Project {
 
   int _build() {
     var tasks = new List<CommandLineTask>();
-    var compile = new CommandLineTask(() => _compiler.run(_compilerArgs.arguments));
+    var compile = new CommandLineTask(() => _compiler.run(
+        _compilerArgs.arguments));
     compile.before = 'Compile...';
     compile.success = 'Compilation succesful.';
     compile.fail = 'Compilation failed.';
@@ -36,9 +37,9 @@ class Project {
     link.success = 'Link succesful.';
     link.fail = 'Link failed.';
     tasks.add(link);
-    for(var task in tasks) {
+    for (var task in tasks) {
       var result = task.execute();
-      if(result.exitCode != 0) {
+      if (result.exitCode != 0) {
         return result.exitCode;
       }
     }
@@ -85,7 +86,7 @@ class Project {
     // Linker
     _setupArgumentsForPosixLinker();
     var args = _linkerArgs;
-    args.add(['-dynamiclib', '-undefined', 'dynamic_lookup']);
+    args.addAll(['-dynamiclib', '-undefined', 'dynamic_lookup']);
     args.add('-o');
     args.add(_linkerOutput, prefix: 'lib', suffix: '.dylib');
   }
@@ -124,7 +125,7 @@ class Project {
   void _setupArguments() {
     _compilerArgs = new CommandLineArguments();
     _linkerArgs = new CommandLineArguments();
-    switch(_operatingSystem) {
+    switch (_operatingSystem) {
       case 'linux':
         _setupArgumentsOnLinux();
         break;
@@ -140,7 +141,7 @@ class Project {
   }
 
   void _setupTools() {
-    switch(_operatingSystem) {
+    switch (_operatingSystem) {
       case 'macos':
       case 'linux':
         _compiler = new Gpp();
@@ -157,22 +158,22 @@ class Project {
 
   void _clean(String path, List<String> extensions) {
     var directory = new Directory(path);
-    if(!directory.existsSync()) {
+    if (!directory.existsSync()) {
       return;
     }
 
     var list = directory.listSync(recursive: false);
-    for(var file in list) {
-      if(file is! FileSystemEntity) {
+    for (var file in list) {
+      if (file is! FileSystemEntity) {
         continue;
       }
 
-      for(var extension in extensions) {
-        if(extension == null || extension.isEmpty) {
+      for (var extension in extensions) {
+        if (extension == null || extension.isEmpty) {
           continue;
         }
 
-        if(file.path.endsWith('.$extension')) {
+        if (file.path.endsWith('.$extension')) {
           file.deleteSync(recursive: false);
           break;
         }
@@ -183,9 +184,9 @@ class Project {
   List<String> _addExtension(List<String> files, String extension) {
     var length = files.length;
     var result = new List<String>(length);
-    for(var i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       var file = files[i];
-      if(file.indexOf('.') == -1) {
+      if (file.indexOf('.') == -1) {
         result[i] = '$file$extension';
       } else {
         result[i] = file;

@@ -4,12 +4,12 @@ class CommandLineArguments {
   List<String> arguments = new List<String>();
 
   void add(String value, {String prefix, String suffix, bool test: true}) {
-    if(test == true) {
-      if(prefix == null) {
+    if (test == true) {
+      if (prefix == null) {
         prefix = '';
       }
 
-      if(suffix == null) {
+      if (suffix == null) {
         suffix = '';
       }
 
@@ -18,17 +18,19 @@ class CommandLineArguments {
     }
   }
 
-  void addAll(List<String> arguments, {String prefix, String suffix, bool test: true}) {
-    if(test == true) {
-      for(var argument in arguments) {
+  void addAll(List<String> arguments, {String prefix, String suffix, bool test:
+      true}) {
+    if (test == true) {
+      for (var argument in arguments) {
         add(argument, prefix: prefix, suffix: suffix);
       }
     }
   }
 
-  void addKey(String key, String value, {String prefix, String suffix, String separator : '=', bool test: true}) {
-    if(test == true) {
-      if(value == null) {
+  void addKey(String key, String value, {String prefix, String suffix, String
+      separator: '=', bool test: true}) {
+    if (test == true) {
+      if (value == null) {
         add(key, prefix: prefix, suffix: suffix);
       } else {
         add('$key$separator$value', prefix: prefix, suffix: suffix);
@@ -37,8 +39,8 @@ class CommandLineArguments {
   }
 
   void addKeys(Map map, {String prefix, String suffix, bool test: true}) {
-    if(test == true) {
-      for(var key in map.keys) {
+    if (test == true) {
+      for (var key in map.keys) {
         var value = map[key];
         addKey(key, value, prefix: prefix, suffix: suffix);
       }

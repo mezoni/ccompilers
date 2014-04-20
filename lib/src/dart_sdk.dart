@@ -6,8 +6,8 @@ class DartSDK {
   static String _path;
 
   static String get path {
-    if(_path == null) {
-      if(Platform.executable != null) {
+    if (_path == null) {
+      if (Platform.executable != null) {
         _path = pathos.dirname(pathos.dirname(Platform.executable));
       }
     }
@@ -25,15 +25,16 @@ class DartSDK {
     var bits = null;
 
     var dartSdkPath = DART_SDK;
-    if(dartSdkPath == null || dartSdkPath.isEmpty) {
-      throw('Unable to locate the Dart SDK. Please set DART_SDK environment variable.');
+    if (dartSdkPath == null || dartSdkPath.isEmpty) {
+      throw
+          ('Unable to locate the Dart SDK. Please set DART_SDK environment variable.');
     }
 
     var executable = 'dart';
-    switch(Platform.operatingSystem) {
+    switch (Platform.operatingSystem) {
       case 'linux':
         executable = '$dartSdkPath/bin/dart';
-        switch(_getEIClassFromELF(executable)) {
+        switch (_getEIClassFromELF(executable)) {
           case ELFCLASS32:
             bits = 32;
             break;
@@ -44,7 +45,7 @@ class DartSDK {
         break;
       case 'macos':
         executable = '$dartSdkPath/bin/dart';
-        switch(_getMHMagicFromPEF(executable)) {
+        switch (_getMHMagicFromPEF(executable)) {
           case MH_MAGIC:
             bits = 32;
             break;
@@ -55,7 +56,7 @@ class DartSDK {
         break;
       case 'windows':
         executable = '$dartSdkPath\\bin\\dart.exe';
-        switch(_getBinaryTypeFromPE(executable)) {
+        switch (_getBinaryTypeFromPE(executable)) {
           case IMAGE_FILE_MACHINE_I386:
             bits = 32;
             break;
@@ -65,11 +66,11 @@ class DartSDK {
         }
         break;
       default:
-        throw('Unsupported operating system ${Platform.operatingSystem}');
+        throw ('Unsupported operating system ${Platform.operatingSystem}');
     }
 
-    if(bits == null) {
-      throw('Unable to determine bitness of the "$executable"');
+    if (bits == null) {
+      throw ('Unable to determine bitness of the "$executable"');
     }
 
     return bits;
@@ -80,22 +81,22 @@ class DartSDK {
     var eiClass = 0;
     var file = new File(filename);
 
-    if(!file.existsSync()) {
+    if (!file.existsSync()) {
       return eiClass;
     }
 
     var fp = file.openSync(mode: FileMode.READ);
     var buffer = [0, 0, 0, 0];
-    if(_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
+    if (_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
       return eiClass;
     }
 
-    if(_listToLong(buffer) != ELFMAG) {
+    if (_listToLong(buffer) != ELFMAG) {
       return eiClass;
     }
 
     buffer = [0];
-    if(_FileUtils.readAsListSync(fp, buffer, 4) != buffer.length) {
+    if (_FileUtils.readAsListSync(fp, buffer, 4) != buffer.length) {
       return eiClass;
     }
 
@@ -109,13 +110,13 @@ class DartSDK {
     var mhMagic = 0;
     var file = new File(filename);
 
-    if(!file.existsSync()) {
+    if (!file.existsSync()) {
       return mhMagic;
     }
 
     var fp = file.openSync(mode: FileMode.READ);
     var buffer = [0, 0, 0, 0];
-    if(_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
+    if (_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
       return mhMagic;
     }
 
@@ -128,36 +129,36 @@ class DartSDK {
     var binaryType = 0;
     var file = new File(filename);
 
-    if(!file.existsSync()) {
+    if (!file.existsSync()) {
       return binaryType;
     }
 
     var fp = file.openSync(mode: FileMode.READ);
-    var func  = (result) {
+    var func = (result) {
       var buffer = [0, 0];
-      if(_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
+      if (_FileUtils.readAsListSync(fp, buffer, 0) != buffer.length) {
         return result;
       }
 
-      if(_listToShort(buffer) != 0x5A4D) {
+      if (_listToShort(buffer) != 0x5A4D) {
         return result;
       }
 
       buffer = [0, 0, 0, 0];
-      if(_FileUtils.readAsListSync(fp, buffer, 0x3C) != buffer.length) {
+      if (_FileUtils.readAsListSync(fp, buffer, 0x3C) != buffer.length) {
         return result;
       }
 
       int offset = _listToLong(buffer);
-      if(_FileUtils.readAsListSync(fp, buffer, offset) != buffer.length) {
+      if (_FileUtils.readAsListSync(fp, buffer, offset) != buffer.length) {
         return result;
       }
 
-      if(_listToLong(buffer) != 0x4550) {
+      if (_listToLong(buffer) != 0x4550) {
         return result;
       }
 
-      if(_FileUtils.readAsListSync(fp, buffer, offset + 4) != buffer.length) {
+      if (_FileUtils.readAsListSync(fp, buffer, offset + 4) != buffer.length) {
         return result;
       }
 
@@ -170,7 +171,7 @@ class DartSDK {
   }
 
   static int _listToShort(List<int> buffer, {bool reverse: false}) {
-    if(!reverse) {
+    if (!reverse) {
       return buffer[0] + buffer[1] * 0x100;
     } else {
       return buffer[0] * 0x100 + buffer[1];
@@ -178,9 +179,9 @@ class DartSDK {
   }
 
   static int _listToLong(List<int> buffer, {bool reverse: false}) {
-    if(!reverse) {
-      return buffer[0] + buffer[1] * 0x100 + buffer[2] * 0x10000 +
-          buffer[3] * 0x1000000;
+    if (!reverse) {
+      return buffer[0] + buffer[1] * 0x100 + buffer[2] * 0x10000 + buffer[3] *
+          0x1000000;
     } else {
       return buffer[0] * 0x1000000 + buffer[1] * 0x10000 + buffer[2] * 0x100 +
           buffer[3];
