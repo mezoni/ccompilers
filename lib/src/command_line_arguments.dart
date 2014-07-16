@@ -112,7 +112,7 @@ class CommandLineArguments {
   /**
    * Returns the copy of this object.
    */
-  void copy() {
+  CommandLineArguments copy() {
     var copy = new CommandLineArguments();
     copy.arguments.addAll(arguments);
     return copy;
