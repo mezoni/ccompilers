@@ -5,6 +5,9 @@ final String DART_SDK = DartSDK.path;
 class DartSDK {
   static String _path;
 
+  /**
+   * The path to Dart SDK.
+   */
   static String get path {
     if (_path == null) {
       if (Platform.executable != null) {
@@ -15,6 +18,9 @@ class DartSDK {
     return _path;
   }
 
+  /**
+   * Returns the bitness of Dart Virtual Machine.
+   */
   static int getVmBits() {
     const ELFCLASS32 = 0x1;
     const ELFCLASS64 = 0x2;

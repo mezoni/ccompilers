@@ -1,8 +1,17 @@
 part of ccompilers.ccompilers;
 
+/**
+ * Command line tool.
+ */
 abstract class CommandLineTool {
+  /**
+   * The name of executable program.
+   */
   String executable;
 
+  /**
+   * The path to executable program.
+   */
   String path;
 
   CommandLineTool();
@@ -34,6 +43,9 @@ abstract class CommandLineTool {
     return result;
   }
 
+  /**
+   * Sets the environment variables.
+   */
   Map<String, String> setEnvironment(Map<String, String> environment) {
     if (environment == null) {
       environment = {};

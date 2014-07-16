@@ -1,6 +1,9 @@
 part of ccompilers.ccompilers;
 
 class WindowsUtils {
+  /**
+   * Finds the file in the "PATH" environment variable.
+   */
   static String findFileInEnvPath(Map<String, String> env, String filename) {
     if (env == null || filename == null) {
       return filename;
@@ -36,6 +39,9 @@ class WindowsUtils {
     return filename;
   }
 
+  /**
+   * Returns the bitness of Microsof Windows OS.
+   */
   static int getSystemBits() {
     if (Platform.environment.containsKey('ProgramFiles(x86)')) {
       return 64;
