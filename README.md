@@ -1,7 +1,7 @@
 #ccompilers
 ==========
 
-A set of classes for easy access to the system С/С++ compilers out the Dart language scripts.
+A set of classes for easy access to the system С/С++ compilers from the Dart language scripts.
 
 This tools is a library written in Dart programming language.
 It is intended to compile C/C++ source files from Dart scripts.
