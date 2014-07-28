@@ -6,3 +6,5 @@ pubspec.lock
 *.o
 *.obj
 *.so
+*.lib
+*.exp
