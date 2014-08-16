@@ -11,6 +11,15 @@ part of ccompilers.ccompilers;
  *     linker.link(files, arguments: args, libpaths: libpaths, output: "hello");
  */
 class GnuLinker extends Gcc implements EasyLinker {
+  int _bits;
+
+  GnuLinker([int bits]) {
+    if (!(bits == null || bits == 32 || bits == 64)) {
+      throw new ArgumentError("bits: $bits");
+    }
+
+    _bits = bits;
+  }
 
   /**
    * Links the [input] files and returns the [ProcessResult] result.
@@ -22,6 +31,8 @@ class GnuLinker extends Gcc implements EasyLinker {
     }
 
     var args = new CommandLineArguments();
+    args.add('-m32', test: _bits == 32);
+    args.add('-m64', test: _bits == 64);
     if (libpaths != null) {
       args.addAll(libpaths, prefix: '-L');
     }

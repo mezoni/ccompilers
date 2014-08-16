@@ -11,6 +11,7 @@ part of ccompilers.ccompilers;
  *     linker.link(files, arguments: args, libpaths: libpaths, output: "hello");
  */
 class MsLinker extends Mslink implements EasyLinker {
+  MsLinker([int bits]) : super(bits: bits);
 
   /**
    * Links the [input] files and returns the [ProcessResult] result.

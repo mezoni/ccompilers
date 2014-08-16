@@ -1,4 +1,9 @@
-## 0.1.9
+## 0.2.1
+
+- Changed constructor in `GnuLinker`, added parameter `bits`
+- Changed constructor in `MsLinker`, added parameter `bits`
+
+## 0.2.0
 
 - Added class `GnuCCompiler`
 - Added class `GnuCppCompiler`
