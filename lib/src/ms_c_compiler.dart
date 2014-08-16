@@ -11,7 +11,7 @@ part of ccompilers.ccompilers;
  *     compiler.compile(files, arguments: args, define: define,
  *        include: include, output: "hello");
  */
-class MsCCompiler extends Msvc implements EasyCompiler {
+class MsCCompiler extends Msvc implements CompilerTool {
   MsCCompiler(int bits) : super(bits: bits);
 
   /**

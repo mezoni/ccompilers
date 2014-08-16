@@ -11,7 +11,7 @@ part of ccompilers.ccompilers;
  *     compiler.compile(files, arguments: args, define: define,
  *        include: include, output: "hello");
  */
-class GnuCCompiler extends Gcc implements EasyCompiler {
+class GnuCCompiler extends Gcc implements CompilerTool {
   int _bits;
 
   GnuCCompiler([int bits]) {

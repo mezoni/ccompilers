@@ -6,7 +6,6 @@
 - Added class `MsCCompiler`
 - Added class `MsCppCompiler`
 - Added class `MsLinker`
-- Added interface `EasyCompiler`
-- Added interface `EasyLinker`
-- Added the concept of an `easy compiler's` and `easy linker's`  
+- Added interface `CompilerTool`
+- Added interface `LinkerTool`
 
