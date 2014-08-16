@@ -1,0 +1,19 @@
+#ccompilers
+==========
+
+A set of classes for easy access to the system С/С++ compilers from the Dart language scripts.
+
+Version: {{VERSION}}
+
+This tools is a library written in Dart programming language.
+It is intended to compile C/C++ source files from Dart scripts.
+
+It can be used in conjunction with [build_tools][build_tools].
+
+Here is one of the possible examples of scripts for building the project of the Dart VM native extension:
+
+```dart
+{{tool/makefile1.txt}}
+```
+
+[build_tools]: http://pub.dartlang.org/packages/build_tools

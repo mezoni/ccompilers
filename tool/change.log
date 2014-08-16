@@ -1,0 +1,9 @@
+0.1.9 Added the concept of an `easy compiler's` and `easy linker's`  
+0.1.9 Added interface `EasyCompiler`
+0.1.9 Added interface `EasyLinker`
+0.1.9 Added class `GnuCCompiler`
+0.1.9 Added class `GnuCppCompiler`
+0.1.9 Added class `GnuLinker`
+0.1.9 Added class `MsCCompiler`
+0.1.9 Added class `MsCppCompiler`
+0.1.9 Added class `MsLinker`

@@ -1,24 +1,8 @@
-#ccompilers
-==========
-
-A set of classes for easy access to the system С/С++ compilers from the Dart language scripts.
-
-Version: 0.1.9
-
-This tools is a library written in Dart programming language.
-It is intended to compile C/C++ source files from Dart scripts.
-
-It can be used in conjunction with [build_tools][build_tools].
-
-Here is one of the possible examples of scripts for building the project of the Dart VM native extension:
-
-```dart
 import "dart:io";
 import "package:build_tools/build_shell.dart";
 import "package:build_tools/build_tools.dart";
 import "package:ccompilers/ccompilers.dart";
 import "package:file_utils/file_utils.dart";
-import "package:patsubst/patsubst.dart";
 
 void main(List<String> args) {
   const String PROJECT_NAME = "sample_extension";
@@ -41,19 +25,15 @@ void main(List<String> args) {
 
   // OS dependent parameters
   var libname = "";
-  var objExtension = "";
   switch (os) {
     case "linux":
       libname = LIBNAME_LINUX;
-      objExtension = ".o";
       break;
     case "macos":
       libname = LIBNAME_MACOS;
-      objExtension = ".o";
       break;
     case "windows":
       libname = LIBNAME_WINDOWS;
-      objExtension = ".obj";
       break;
     default:
       print("Unsupported operating system: $os");
@@ -71,9 +51,6 @@ void main(List<String> args) {
   if (os != "windows") {
     cppFiles = FileUtils.exclude(cppFiles, "${PROJECT_NAME}_dllmain_win.cc");
   }
-
-  // Object files
-  var objFiles = patsubst("%.cc", "%${objExtension}").replaceAll(cppFiles);
 
   // Makefile
   // Target: default
@@ -102,7 +79,7 @@ void main(List<String> args) {
   }, description: "Deletes all intermediate and output files.", reusable: true);
 
   // Compile on Posix
-  rule("%.o", ["%.cc"], (Target t, Map args) {
+  file("$PROJECT_NAME.o", cppFiles, (Target t, Map args) {
     var args = new CommandLineArguments();
     var compiler = new Gpp();
     args.add('-c');
@@ -116,7 +93,7 @@ void main(List<String> args) {
   });
 
   // Compile on Windows
-  rule("%.obj", ["%.cc"], (Target t, Map args) {
+  file("$PROJECT_NAME.obj", cppFiles, (Target t, Map args) {
     var args = new CommandLineArguments();
     var compiler = new Msvc(bits: bits);
     args.add('/c');
@@ -128,7 +105,7 @@ void main(List<String> args) {
   });
 
   // Link on Linux
-  file(LIBNAME_LINUX, objFiles, (Target t, Map args) {
+  file(LIBNAME_LINUX, ["$PROJECT_NAME.o"], (Target t, Map args) {
     var args = new CommandLineArguments();
     var linker = new Gcc();
     args.addAll(t.sources);
@@ -141,7 +118,7 @@ void main(List<String> args) {
   });
 
   // Link on Macos
-  file(LIBNAME_MACOS, objFiles, (Target t, Map args) {
+  file(LIBNAME_MACOS, ["$PROJECT_NAME.o"], (Target t, Map args) {
     var args = new CommandLineArguments();
     var linker = new Gcc();
     args.addAll(t.sources);
@@ -154,7 +131,7 @@ void main(List<String> args) {
   });
 
   // Link on Windows
-  file(LIBNAME_WINDOWS, objFiles, (Target t, Map args) {
+  file(LIBNAME_WINDOWS, ["$PROJECT_NAME.obj"], (Target t, Map args) {
     var args = new CommandLineArguments();
     var linker = new Mslink(bits: bits);
     args.add('/DLL');
@@ -168,6 +145,3 @@ void main(List<String> args) {
 
   new BuildShell().run(args).then((exitCode) => exit(exitCode));
 }
-```
-
-[build_tools]: http://pub.dartlang.org/packages/build_tools
