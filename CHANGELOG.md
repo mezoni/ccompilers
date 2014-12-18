@@ -1,3 +1,7 @@
+## 0.2.2
+
+- `DartSDK.getVmBits()` now uses information from `SysInfo.userSpaceBitness`
+
 ## 0.2.1
 
 - Changed constructor in `GnuLinker`, added parameter `bits`
