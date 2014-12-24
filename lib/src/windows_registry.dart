@@ -27,8 +27,7 @@ class WindowsRegistry {
     return _parseQuerySubkeys(keyName, result);
   }
 
-  static WindowsRegistryKey _parseQuerySubkeys(String queryKey, String
-      queryResult) {
+  static WindowsRegistryKey _parseQuerySubkeys(String queryKey, String queryResult) {
     var map = new LinkedHashMap<String, WindowsRegistryKey>();
     map[queryKey] = new WindowsRegistryKey(queryKey);
     var strings = queryResult.split('\r\n');

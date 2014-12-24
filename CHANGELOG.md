@@ -1,3 +1,7 @@
+## 0.2.4
+
+- Improved detection of MS Visual Studio C/C++ Compiler
+
 ## 0.2.3
 
 - Fixed bug in 'MsLinker'

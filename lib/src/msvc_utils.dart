@@ -6,7 +6,7 @@ class MsvcUtils {
       throw new ArgumentError('bits: $bits');
     }
 
-    var key = r'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio';
+    var key = r'HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio';
     var reg = WindowsRegistry.queryAllKeys(key);
     if (reg == null) {
       return null;
@@ -28,18 +28,21 @@ class MsvcUtils {
       return null;
     }
 
-    var scriptName = '';
+    var scriptName = 'vcvars32.bat';
     switch (bits) {
-      case 32:
-        scriptName = 'vcvars32.bat';
-        break;
       case 64:
-        scriptName = 'vcvarsx86_amd64.bat';
-        break;
-    }
+        switch (SysInfo.kernelArchitecture) {
+          case "AMD64":
+            scriptName = 'amd64\\vcvars64.bat';
+            break;
+          case "IA64":
+            scriptName = 'ia64\\vcvars64.bat';
+            break;
+          default:
+            return null;
+        }
 
-    if (scriptName.isEmpty) {
-      return null;
+        break;
     }
 
     var fullScriptPath = '';

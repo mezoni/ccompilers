@@ -37,8 +37,7 @@ class CommandLineTask {
 
   Function _action;
 
-  CommandLineTask(ProcessResult
-      action(), {this.after, this.before, this.fail, this.silent, this.success}) {
+  CommandLineTask(ProcessResult action(), {this.after, this.before, this.fail, this.silent, this.success}) {
     _action = action;
   }
 

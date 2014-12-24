@@ -12,8 +12,7 @@ class _FileUtils {
     return path;
   }
 
-  static int readAsListSync(RandomAccessFile fp, List<int> buffer, int position)
-      {
+  static int readAsListSync(RandomAccessFile fp, List<int> buffer, int position) {
     fp.setPositionSync(position);
     if (fp.positionSync() != position) {
       return 0;

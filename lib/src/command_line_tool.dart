@@ -16,20 +16,14 @@ abstract class CommandLineTool {
 
   CommandLineTool();
 
-  ProcessResult run(List<String> arguments, {String
-      workingDirectory, Map<String, String> environment, bool
-      includeParentEnvironment: true, bool runInShell: false, Encoding stdoutEncoding:
-      SYSTEM_ENCODING, Encoding stderrEncoding: SYSTEM_ENCODING}) {
+  ProcessResult run(List<String> arguments, {String workingDirectory, Map<String, String> environment, bool includeParentEnvironment: true, bool runInShell: false, Encoding stdoutEncoding: SYSTEM_ENCODING, Encoding stderrEncoding: SYSTEM_ENCODING}) {
     environment = setEnvironment(environment);
     var filepath = executable;
     if (path != null) {
       filepath = pathos.join(path, executable);
     }
 
-    var result = Process.runSync(filepath, arguments, workingDirectory:
-        workingDirectory, environment: environment, includeParentEnvironment:
-        includeParentEnvironment, runInShell: runInShell, stdoutEncoding:
-        stdoutEncoding, stderrEncoding: stderrEncoding);
+    var result = Process.runSync(filepath, arguments, workingDirectory: workingDirectory, environment: environment, includeParentEnvironment: includeParentEnvironment, runInShell: runInShell, stdoutEncoding: stdoutEncoding, stderrEncoding: stderrEncoding);
     var message = result.stdout.toString();
     if (!message.isEmpty) {
       print(message);

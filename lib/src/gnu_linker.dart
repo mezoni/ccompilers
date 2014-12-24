@@ -24,8 +24,7 @@ class GnuLinker extends Gcc implements EasyLinker {
   /**
    * Links the [input] files and returns the [ProcessResult] result.
    */
-  ProcessResult link(List<String> input, {List<String> arguments, List<String>
-      libpaths, String output}) {
+  ProcessResult link(List<String> input, {List<String> arguments, List<String> libpaths, String output}) {
     if (input == null) {
       throw new ArgumentError("input: $input");
     }

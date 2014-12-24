@@ -25,8 +25,7 @@ class GnuCppCompiler extends Gpp implements CompilerTool {
   /**
    * Compiles C++ [input] files and returns the [ProcessResult] result.
    */
-  ProcessResult compile(List<String> input, {List<String> arguments, Map<String,
-      String> define, List<String> include, String output}) {
+  ProcessResult compile(List<String> input, {List<String> arguments, Map<String, String> define, List<String> include, String output}) {
     if (input == null) {
       throw new ArgumentError("input: $input");
     }
