@@ -1,3 +1,7 @@
+## 0.2.3
+
+- Fixed bug in 'MsLinker'
+
 ## 0.2.2
 
 - `DartSDK.getVmBits()` now uses information from `SysInfo.userSpaceBitness`

@@ -24,11 +24,11 @@ class MsLinker extends Mslink implements EasyLinker {
 
     var args = new CommandLineArguments();
     if (libpaths != null) {
-      args.addAll(libpaths, prefix: '/LIBPATH');
+      args.addAll(libpaths, prefix: '/LIBPATH:');
     }
 
     if (output != null) {
-      args.add(output, prefix: '/OUT');
+      args.add(output, prefix: '/OUT:');
     }
 
     if (arguments != null) {
