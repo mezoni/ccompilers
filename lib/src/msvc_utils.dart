@@ -6,7 +6,11 @@ class MsvcUtils {
       throw new ArgumentError('bits: $bits');
     }
 
-    var key = r'HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio';
+    var key = r'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio';
+    if (SysInfo.kernelBitness == 64) {
+      key = r'HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio';
+    }
+
     var reg = WindowsRegistry.queryAllKeys(key);
     if (reg == null) {
       return null;
@@ -63,6 +67,7 @@ class MsvcUtils {
     return fullScriptPath;
   }
 
+  // TODO: Add support of Microsoft SDK
   static Map<String, String> getEnvironment(int bits) {
     if (bits == null || (bits != 32 && bits != 64)) {
       throw new ArgumentError('bits: $bits');
