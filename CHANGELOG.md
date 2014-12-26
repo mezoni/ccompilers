@@ -1,11 +1,18 @@
-## 0.2.3
+## 0.2.6
 
-- Fixed bug in 'MsLinker'
+- Corrected the detection of 'DART_SDK' but it is still not fully functional when using multiple Dart SDK
+
+## 0.2.5
+
 - Fixed bug in 'MsvcUtils'
 
 ## 0.2.4
 
 - Improved detection of MS Visual Studio C/C++ Compiler
+
+## 0.2.3
+
+- Fixed bug in 'MsLinker'
 
 ## 0.2.2
 
