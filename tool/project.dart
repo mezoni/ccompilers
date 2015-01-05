@@ -6,8 +6,7 @@ import "package:file_utils/file_utils.dart";
 
 const String CHANGE_LOG = "tool/change.log";
 const String CHANGELOG_MD = "CHANGELOG.md";
-const String MAKEFILE1_TXT = "tool/makefile1.txt";
-const String MAKEFILE2_TXT = "tool/makefile2.txt";
+const String MAKEFILE_TXT = "tool/makefile.txt";
 const String PUBSPEC_YAML = "pubspec.yaml";
 const String README_MD = "README.md";
 const String README_MD_IN = "tool/README.md.in";
@@ -27,7 +26,7 @@ void main(List<String> args) {
     FileUtils.touch([t.name], create: true);
   });
 
-  file(README_MD, [README_MD_IN, PUBSPEC_YAML, MAKEFILE1_TXT, MAKEFILE1_TXT],
+  file(README_MD, [README_MD_IN, PUBSPEC_YAML, MAKEFILE_TXT],
       (Target t, Map args) {
     var sources = t.sources.toList();
     var template = new File(sources.removeAt(0)).readAsStringSync();

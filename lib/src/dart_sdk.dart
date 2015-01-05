@@ -6,26 +6,7 @@ class DartSDK {
   /**
    * The path to Dart SDK.
    */
-  static String get path {
-    var path = _findPathToDartVM();
-    if (path != null) {
-      path = pathos.dirname(path);
-      if (path != ".") {
-        var required = pathos.join(path, "include", "dart_api.h");
-        if (new File(required).existsSync()) {
-          return path;
-        }
-      }
-    }
-
-    // Can be problematic when using multiple SDK on local machine.
-    path = Platform.environment['DART_SDK'];
-    if (path == null) {
-      return null;
-    }
-
-    return pathos.normalize(path);
-  }
+  static final String path = _findPathToDartVM();
 
   /**
    * Returns the bitness of Dart Virtual Machine.
@@ -33,13 +14,25 @@ class DartSDK {
   static int getVmBits() => SysInfo.userSpaceBitness;
 
   static String _findPathToDartVM() {
-    // TODO: See https://code.google.com/p/dart/issues/detail?id=16994
-    // Also exist other better way but I do not want introduce it here
-    // because it is the responsibility of the Google Dart developers.
-    // 26 Dec 2014
-    var path = pathos.dirname(Platform.executable);
-    if (path != ".") {
-      return path;
+    var executable = Platform.executable;
+    var s = Platform.pathSeparator;
+    if (!executable.contains(s)) {
+      if (Platform.isLinux) {
+        executable = new Link("/proc/$pid/exe").resolveSymbolicLinksSync();
+      } else {
+        return null;
+      }
+    }
+
+    var file = new File(executable);
+    if (file.existsSync()) {
+      var parent = file.absolute.parent;
+      parent = parent.parent;
+      var path = parent.path;
+      var dartAPI = "$path${s}include${s}dart_api.h";
+      if (new File(dartAPI).existsSync()) {
+        return path;
+      }
     }
 
     return null;

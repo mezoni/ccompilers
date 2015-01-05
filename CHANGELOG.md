@@ -1,3 +1,7 @@
+## 0.2.7
+
+- Improved the detection of 'DART_SDK' location
+
 ## 0.2.6
 
 - Corrected the detection of 'DART_SDK' but it is still not fully functional when using multiple Dart SDK
