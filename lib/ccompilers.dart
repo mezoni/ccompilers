@@ -3,6 +3,7 @@ library ccompilers.ccompilers;
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
+import 'package:logging/logging.dart';
 import 'package:system_info/system_info.dart';
 import 'package:path/path.dart' as pathos;
 

@@ -1,3 +1,8 @@
+## 0.2.10
+
+- Added parameter `logger` to `CommandLineTool`
+- Breaking change in the `CommandLineTool` and their descendants: all parameters in the constructors now are named parameters 
+
 ## 0.2.9
 
 - Added the possibility passing arguments `environment` and `workingDirectory` for the compilers and linkers

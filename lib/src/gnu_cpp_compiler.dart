@@ -14,7 +14,7 @@ part of ccompilers.ccompilers;
 class GnuCppCompiler extends Gpp implements CompilerTool {
   int _bits;
 
-  GnuCppCompiler([int bits]) {
+  GnuCppCompiler({int bits, Logger logger}) : super(logger: logger) {
     if (!(bits == null || bits == 32 || bits == 64)) {
       throw new ArgumentError("bits: $bits");
     }

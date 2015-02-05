@@ -14,7 +14,7 @@ part of ccompilers.ccompilers;
 class GnuCCompiler extends Gcc implements CompilerTool {
   int _bits;
 
-  GnuCCompiler([int bits]) {
+  GnuCCompiler({int bits, Logger logger}) : super(logger: logger) {
     if (!(bits == null || bits == 32 || bits == 64)) {
       throw new ArgumentError("bits: $bits");
     }

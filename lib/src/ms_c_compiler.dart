@@ -12,7 +12,7 @@ part of ccompilers.ccompilers;
  *        include: include, output: "hello");
  */
 class MsCCompiler extends Msvc implements CompilerTool {
-  MsCCompiler(int bits) : super(bits: bits);
+  MsCCompiler({int bits, Logger logger}) : super(bits: bits, logger: logger);
 
   /**
    * Compiles C [input] files and returns the [ProcessResult] result.

@@ -13,7 +13,7 @@ part of ccompilers.ccompilers;
 class GnuLinker extends Gcc implements EasyLinker {
   int _bits;
 
-  GnuLinker([int bits]) {
+  GnuLinker({int bits, Logger logger}) : super(logger: logger) {
     if (!(bits == null || bits == 32 || bits == 64)) {
       throw new ArgumentError("bits: $bits");
     }

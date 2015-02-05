@@ -12,7 +12,7 @@ part of ccompilers.ccompilers;
  *        include: include, output: "hello");
  */
 class MsCppCompiler extends Msvc implements CompilerTool {
-  MsCppCompiler(int bits) : super(bits: bits);
+  MsCppCompiler({int bits, Logger logger}) : super(bits: bits, logger: logger);
 
   /**
    * Compiles C++ [input] files and returns the [ProcessResult] result.

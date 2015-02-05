@@ -1,7 +1,7 @@
 part of ccompilers.ccompilers;
 
 class Gpp extends CommandLineTool {
-  Gpp() {
+  Gpp({Logger logger}) : super(logger: logger) {
     executable = 'g++';
   }
 }
