@@ -32,19 +32,19 @@ class GnuLinker extends Gcc implements EasyLinker {
     var args = new CommandLineArguments();
     args.add('-m32', test: _bits == 32);
     args.add('-m64', test: _bits == 64);
-    if (libpaths != null) {
-      args.addAll(libpaths, prefix: '-L');
-    }
-
     if (output != null) {
       args.add(output, prefix: '-o');
     }
 
+    if (libpaths != null) {
+      args.addAll(libpaths, prefix: '-L');
+    }
+
+    args.addAll(input);
     if (arguments != null) {
       args.addAll(arguments);
     }
 
-    args.addAll(input);
     return run(args.arguments);
   }
 }

@@ -30,11 +30,11 @@ class MsLinker extends Mslink implements EasyLinker {
       args.add(output, prefix: '/OUT:');
     }
 
+    args.addAll(input);
     if (arguments != null) {
       args.addAll(arguments);
     }
 
-    args.addAll(input);
     return run(args.arguments);
   }
 }

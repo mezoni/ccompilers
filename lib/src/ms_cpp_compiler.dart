@@ -24,19 +24,19 @@ class MsCppCompiler extends Msvc implements CompilerTool {
 
     var args = new CommandLineArguments();
     args.add('/c');
-    if (include != null) {
-      args.addAll(include, prefix: '/I');
-    }
-
     if (define != null) {
       args.addKeys(define, prefix: '/D');
     }
 
+    if (include != null) {
+      args.addAll(include, prefix: '/I');
+    }
+
+    args.addAll(input);
     if (output != null) {
       args.add(output, prefix: '/Fo');
     }
 
-    args.addAll(input);
     if (arguments != null) {
       args.addAll(arguments);
     }

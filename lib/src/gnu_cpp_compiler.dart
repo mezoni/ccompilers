@@ -34,14 +34,15 @@ class GnuCppCompiler extends Gpp implements CompilerTool {
     args.add('-c');
     args.add('-m32', test: _bits == 32);
     args.add('-m64', test: _bits == 64);
-    if (include != null) {
-      args.addAll(include, prefix: '-I');
-    }
-
     if (define != null) {
       args.addKeys(define, prefix: '-D');
     }
 
+    if (include != null) {
+      args.addAll(include, prefix: '-I');
+    }
+
+    args.addAll(input);
     if (output != null) {
       args.add(output, prefix: '-o');
     }
@@ -50,7 +51,6 @@ class GnuCppCompiler extends Gpp implements CompilerTool {
       args.addAll(arguments);
     }
 
-    args.addAll(input);
     return run(args.arguments);
   }
 }

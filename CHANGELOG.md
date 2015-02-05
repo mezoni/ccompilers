@@ -1,3 +1,7 @@
+## 0.2.8
+
+- The order of the arguments was modified. The user defined arguments goes now last.
+
 ## 0.2.7
 
 - Improved the detection of 'DART_SDK' location
