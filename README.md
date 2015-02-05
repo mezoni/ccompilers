@@ -3,7 +3,7 @@
 
 A set of classes for easy access to the system С/С++ compilers from the Dart language scripts.
 
-Version: 0.2.8
+Version: 0.2.9
 
 This tools is a library written in Dart programming language.
 It is intended to compile C/C++ source files from Dart scripts.

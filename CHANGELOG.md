@@ -1,6 +1,10 @@
+## 0.2.9
+
+- Added the possibility passing arguments `environment` and `workingDirectory` for the compilers and linkers
+
 ## 0.2.8
 
-- The order of the arguments was modified. The user defined arguments goes now last.
+- The order of the arguments was modified. The user defined arguments goes now last
 
 ## 0.2.7
 
