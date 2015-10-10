@@ -1,10 +1,8 @@
+.buildlog
 .DS_Store
+.idea
+.packages
+.pub/
+build/
 packages
-.project
 pubspec.lock
-*.dll
-*.o
-*.obj
-*.so
-*.lib
-*.exp

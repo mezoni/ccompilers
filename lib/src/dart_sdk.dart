@@ -24,6 +24,12 @@ class DartSDK {
       }
     }
 
+    if (Platform.isWindows) {
+      if (!executable.toLowerCase().endsWith(".exe")) {
+        executable = "$executable.exe";
+      }
+    }
+
     var file = new File(executable);
     if (file.existsSync()) {
       var parent = file.absolute.parent;
