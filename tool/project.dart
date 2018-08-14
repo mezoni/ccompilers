@@ -12,12 +12,6 @@ const String README_MD = "README.md";
 const String README_MD_IN = "tool/README.md.in";
 
 void main(List<String> args) {
-  // http://dartbug.com/20119 (before change directory)
-  var script = Platform.script;
-
-  // Change directory to root
-  FileUtils.chdir("..");
-
   file(CHANGELOG_MD, [CHANGE_LOG], (Target t, Map args) {
     writeChangelogMd();
   });
@@ -51,9 +45,9 @@ void main(List<String> args) {
     return exec("git", ["add", "--all"]);
   }, description: "git add --all");
 
-  target("git:commit", [CHANGELOG_MD, README_MD, "git:add"], (Target t, Map
-      args) {
-    var message = args["m"];
+  target("git:commit", [CHANGELOG_MD, README_MD, "git:add"],
+      (Target t, Map args) {
+    var message = args["m"] as String;
     if (message == null || message.isEmpty) {
       print("Please, specify the `commit` message with --m option");
       return -1;
@@ -79,7 +73,7 @@ void main(List<String> args) {
   }, description: "git push origin master");
 
   target("log:changes", [], (Target t, Map args) {
-    var message = args["m"];
+    var message = args["m"] as String;
     if (message == null || message.isEmpty) {
       print("Please, specify the `message` with --m option");
       return -1;
@@ -88,11 +82,11 @@ void main(List<String> args) {
     logChanges(message);
   }, description: "log changes, --m message", reusable: true);
 
-  target("prj:changelog", [CHANGELOG_MD], null, description:
-      "generate '$CHANGELOG_MD'", reusable: true);
+  target("prj:changelog", [CHANGELOG_MD], null,
+      description: "generate '$CHANGELOG_MD'", reusable: true);
 
-  target("prj:readme", [README_MD], null, description: "generate '$README_MD'",
-      reusable: true);
+  target("prj:readme", [README_MD], null,
+      description: "generate '$README_MD'", reusable: true);
 
   target("prj:version", [], (Target t, Map args) {
     print("Version: ${getVersion()}");
@@ -123,12 +117,12 @@ String incrementVersion(String version) {
     return version;
   }
 
-  var patch = int.parse(parts[2], onError: (x) => null);
+  var patch = int.parse(parts[2]);
   if (patch == null) {
     return version;
   }
 
-  parts[2] = ++patch;
+  parts[2] = (++patch).toString();
   parts.length = 3;
   return parts.join(".");
 }
@@ -190,7 +184,7 @@ void writeChangelogMd() {
 
   var lines = log.readAsLinesSync();
   lines = lines.reversed.toList();
-  var versions = <String, List<String>> {};
+  var versions = <String, List<String>>{};
   for (var line in lines) {
     var index = line.indexOf(" ");
     if (index != -1) {

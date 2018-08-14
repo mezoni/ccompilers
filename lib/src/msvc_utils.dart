@@ -83,7 +83,7 @@ class MsvcUtils {
     if (result != null && result.exitCode == 0) {
       var env = new Map<String, String>();
       var exp = new RegExp(r'(^\S+)=(.*)$', multiLine: true);
-      var matches = exp.allMatches(result.stdout);
+      var matches = exp.allMatches(result.stdout as String);
       for (var match in matches) {
         env[match.group(1)] = match.group(2);
       }

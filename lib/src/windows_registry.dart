@@ -8,7 +8,7 @@ class WindowsRegistry {
     }
 
     var regVersion = '\r\n! REG.EXE VERSION ';
-    var str = result.stdout;
+    var str = result.stdout as String;
     if (str.startsWith(regVersion)) {
       str = str.substring(regVersion.length + 7);
     } else {
@@ -27,7 +27,8 @@ class WindowsRegistry {
     return _parseQuerySubkeys(keyName, result);
   }
 
-  static WindowsRegistryKey _parseQuerySubkeys(String queryKey, String queryResult) {
+  static WindowsRegistryKey _parseQuerySubkeys(
+      String queryKey, String queryResult) {
     var map = new LinkedHashMap<String, WindowsRegistryKey>();
     map[queryKey] = new WindowsRegistryKey(queryKey);
     var strings = queryResult.split('\r\n');
@@ -43,7 +44,7 @@ class WindowsRegistry {
         break;
       }
 
-      var regKey;
+      WindowsRegistryKey regKey;
       if (!map.containsKey(fullName)) {
         regKey = new WindowsRegistryKey(fullName);
         map[fullName] = regKey;
@@ -51,7 +52,7 @@ class WindowsRegistry {
         regKey = map[fullName];
       }
 
-      var parent;
+      WindowsRegistryKey parent;
       var parentName = regKey.parentName;
       if (!map.containsKey(parentName)) {
         parent = new WindowsRegistryKey(parentName);

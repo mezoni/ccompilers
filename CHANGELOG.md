@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Adaptation to Dart 2.0
+
 ## 0.2.10
 
 - Added parameter `logger` to `CommandLineTool`

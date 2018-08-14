@@ -19,7 +19,8 @@ abstract class MsvsTool extends CommandLineTool {
     environment = super.setEnvironment(environment);
     var msvcEnvironment = MsvcUtils.getEnvironment(_bits);
     if (msvcEnvironment == null) {
-      throw new StateError('Cannot set environment of the Visual Studio C/C++ compiler.');
+      throw new StateError(
+          'Cannot set environment of the Visual Studio C/C++ compiler.');
     }
 
     environment.addAll(MsvcUtils.getEnvironment(_bits));

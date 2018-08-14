@@ -18,3 +18,4 @@
 0.2.9 Added the possibility passing arguments `environment` and `workingDirectory` for the compilers and linkers
 0.2.10 Added parameter `logger` to `CommandLineTool`
 0.2.10 Breaking change in the `CommandLineTool` and their descendants: all parameters in the constructors now are named parameters 
+0.3.0 Adaptation to Dart 2.0

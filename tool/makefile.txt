@@ -48,7 +48,7 @@ void main(List<String> args) {
   }
 
   // Set working directory
-  FileUtils.chdir("../lib/src");
+  FileUtils.chdir("lib/src");
 
   // C++ files
   var cppFiles = FileUtils.glob("*.cc");

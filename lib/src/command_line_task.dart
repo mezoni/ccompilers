@@ -35,9 +35,10 @@ class CommandLineTask {
    */
   String success;
 
-  Function _action;
+  ProcessResult Function() _action;
 
-  CommandLineTask(ProcessResult action(), {this.after, this.before, this.fail, this.silent, this.success}) {
+  CommandLineTask(ProcessResult action(),
+      {this.after, this.before, this.fail, this.silent, this.success}) {
     _action = action;
   }
 

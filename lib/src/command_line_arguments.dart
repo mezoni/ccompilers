@@ -45,7 +45,8 @@ class CommandLineArguments {
    *  [suffix]
    *    The suffix that will be added after the each value.
    */
-  void addAll(List<String> values, {String prefix, String suffix, bool test: true}) {
+  void addAll(List<String> values,
+      {String prefix, String suffix, bool test: true}) {
     if (test == true) {
       for (var argument in values) {
         add(argument, prefix: prefix, suffix: suffix);
@@ -67,7 +68,8 @@ class CommandLineArguments {
    *  [separator]
    *    The separator that will separate the key from the value.
    */
-  void addKey(String key, String value, {String prefix, String suffix, String separator: '=', bool test: true}) {
+  void addKey(String key, String value,
+      {String prefix, String suffix, String separator: '=', bool test: true}) {
     if (test == true) {
       if (value == null) {
         add(key, prefix: prefix, suffix: suffix);
@@ -91,7 +93,8 @@ class CommandLineArguments {
    *  [separator]
    *    The separator that will separate the key from the value.
    */
-  void addKeys(Map map, {String prefix, String suffix, bool test: true}) {
+  void addKeys(Map<String, String> map,
+      {String prefix, String suffix, bool test: true}) {
     if (test == true) {
       for (var key in map.keys) {
         var value = map[key];

@@ -16,7 +16,12 @@ class MsLinker extends Mslink implements EasyLinker {
   /**
    * Links the [input] files and returns the [ProcessResult] result.
    */
-  ProcessResult link(List<String> input, {List<String> arguments, Map<String, String> environment, List<String> libpaths, String output, String workingDirectory}) {
+  ProcessResult link(List<String> input,
+      {List<String> arguments,
+      Map<String, String> environment,
+      List<String> libpaths,
+      String output,
+      String workingDirectory}) {
     if (input == null) {
       throw new ArgumentError("input: $input");
     }
@@ -35,6 +40,7 @@ class MsLinker extends Mslink implements EasyLinker {
       args.addAll(arguments);
     }
 
-    return run(args.arguments, environment: environment, workingDirectory: workingDirectory);
+    return run(args.arguments,
+        environment: environment, workingDirectory: workingDirectory);
   }
 }

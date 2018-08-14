@@ -1,11 +1,13 @@
 name: ccompilers
-version: 0.2.11
+version: 0.3.0
 author: Andrew Mezoni <andrew.mezoni@gmail.com>
 description: A set of classes for easy access to the system С/С++ compilers from the Dart language scripts.
 homepage: https://github.com/mezoni/ccompilers
+environment:
+  sdk: '>=2.0.0 <3.0.0'
 dependencies:
-  logging: any
-  path: any
-  system_info: any
+  logging: ^0.11.3+2
+  path: ^1.6.2
+  system_info: ^0.1.0
 dev_dependencies:
-  build_tools: any
+  build_tools: ^0.1.0

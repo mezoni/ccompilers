@@ -9,7 +9,7 @@ class WindowsUtils {
       return filename;
     }
 
-    var paths = [];
+    var paths = <String>[];
     for (var key in env.keys) {
       if (key.toUpperCase() == 'PATH') {
         paths = env[key].split(';');

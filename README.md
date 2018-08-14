@@ -3,7 +3,7 @@
 
 A set of classes for easy access to the system С/С++ compilers from the Dart language scripts.
 
-Version: 0.2.11
+Version: 0.3.0
 
 This tools is a library written in Dart programming language.
 It is intended to compile C/C++ source files from Dart scripts.
@@ -63,7 +63,7 @@ void main(List<String> args) {
   }
 
   // Set working directory
-  FileUtils.chdir("../lib/src");
+  FileUtils.chdir("lib/src");
 
   // C++ files
   var cppFiles = FileUtils.glob("*.cc");
